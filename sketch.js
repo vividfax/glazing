@@ -102,8 +102,12 @@ function doFire() {
 
         hiddenCanvas.image(layers[i], 700/2, 700/2);
         hiddenCanvas.tint(random(255), 30, 100);
+
+        // if (random() < 0.5) {
+        //     hiddenCanvas.filter(BLUR, 2);
+        // }
     }
-    hiddenCanvas.filter(BLUR, 2);
+    //hiddenCanvas.filter(BLUR, 2);
 
     noLoop();
 
