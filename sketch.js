@@ -1,4 +1,5 @@
-let cup;
+let masks = [];
+let maskIndex = 0;
 
 let layers = [];
 
@@ -10,7 +11,11 @@ let fired = false;
 
 function preload() {
 
-    cup = loadImage("./cup.svg")
+    masks.push(loadImage("./svg/cup.svg"));
+    //masks.push(loadImage("./svg/plate.svg"));
+    masks.push(loadImage("./svg/pot.svg"));
+    masks.push(loadImage("./svg/puffer.svg"));
+    masks.push(loadImage("./svg/vase.svg"));
 }
 
 function setup() {
@@ -20,17 +25,18 @@ function setup() {
     colorMode(HSB);
     frameRate(2);
 
-    background("#B3A8C0");
+    background("#585161");
 
     select("#fire-button").mousePressed(() => doFire());
     select("#reset-button").mousePressed(() => reset());
 
-
-    hiddenCanvas = createGraphics(500, 500);
+    hiddenCanvas = createGraphics(700, 700);
     hiddenCanvas.imageMode(CENTER);
     hiddenCanvas.colorMode(HSB);
 
     glazeColor = color(random(255), 15, 100);
+
+    maskIndex = int(random(masks.length));
 }
 
 function draw() {
@@ -44,7 +50,7 @@ function draw() {
     }
 
     if (frameCount % 10 == 1) {
-        layers.push(createGraphics(500, 500));
+        layers.push(createGraphics(700, 700));
         glazeColor = color(random(255), 15, 100);
     }
 
@@ -53,7 +59,7 @@ function draw() {
         pg.colorMode(HSB);
         pg.noStroke();
         pg.fill(glazeColor);
-        pg.ellipse(mouseX - (width-500)/2, mouseY - (height-500)/2, random(30, 160));
+        pg.ellipse(mouseX - (width-700)/2, mouseY - (height-700)/2, random(30, 160));
 
         image(pg, width/2, height/2);
     }
@@ -86,7 +92,7 @@ function doFire() {
             hiddenCanvas.blendMode(HARD_LIGHT);
         }
 
-        hiddenCanvas.image(layers[i], 500/2, 500/2);
+        hiddenCanvas.image(layers[i], 700/2, 700/2);
         hiddenCanvas.tint(random(255), 30, 100);
     }
     hiddenCanvas.filter(BLUR, 2);
@@ -103,7 +109,7 @@ function doFire() {
 
 function displayMask() {
 
-    image(cup, width/2, height/2);
+    image(masks[maskIndex], width/2, height/2);
 
     // fill("#B3A8C0");
     // noStroke();
@@ -119,8 +125,9 @@ function reset() {
     layers = [];
     loop();
     background("#F3EFDF");
-    layers.push(createGraphics(500, 500));
+    layers.push(createGraphics(700, 700));
     glazeColor = color(random(255), 15, 100);
+    maskIndex = int(random(masks.length));
 
     draw();
 }
