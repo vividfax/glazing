@@ -23,6 +23,7 @@ function setup() {
     background("#B3A8C0");
 
     select("#fire-button").mousePressed(() => doFire());
+    select("#reset-button").mousePressed(() => reset());
 
 
     hiddenCanvas = createGraphics(500, 500);
@@ -47,13 +48,15 @@ function draw() {
         glazeColor = color(random(255), 15, 100);
     }
 
-    let pg = layers[layers.length-1];
-    pg.colorMode(HSB);
-    pg.noStroke();
-    pg.fill(glazeColor);
-    pg.ellipse(mouseX - (width-500)/2, mouseY - (height-500)/2, random(30, 160));
+    if (layers.length > 0) {
+        let pg = layers[layers.length-1];
+        pg.colorMode(HSB);
+        pg.noStroke();
+        pg.fill(glazeColor);
+        pg.ellipse(mouseX - (width-500)/2, mouseY - (height-500)/2, random(30, 160));
 
-    image(pg, width/2, height/2);
+        image(pg, width/2, height/2);
+    }
     //filter(POSTERIZE, 40);
     displayMask();
 }
@@ -108,4 +111,16 @@ function displayMask() {
     // rect(width/2 + 500/2, 0, (width-500)/2, height);
     // rect(0, 0, width, (height-500)/2);
     // rect(0, height/2 + 500/2, width, (height-500)/2);
+}
+
+function reset() {
+
+    fired = false;
+    layers = [];
+    loop();
+    background("#F3EFDF");
+    layers.push(createGraphics(500, 500));
+    glazeColor = color(random(255), 15, 100);
+
+    draw();
 }
