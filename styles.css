@@ -1,0 +1,25 @@
+button {
+    font-family: "Kalam", serif;
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    bottom: 40px;
+    border-radius: 5px;
+    border-style: none;
+    font-size: 20px;
+    color: #82778F;
+    background-color: #F3EFDF;
+    left: 50%;
+    user-select: none;
+    -moz-user-select: none;
+    z-index: 1;
+}
+
+button:hover {
+    color: #F3EFDF;
+    background-color: #82778F;
+}
+
+#fire-button {
+    transform: translate(-100px, 0);
+}
