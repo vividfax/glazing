@@ -23,7 +23,7 @@ function setup() {
     createCanvas(700, 700);
     imageMode(CENTER);
     colorMode(HSB);
-    frameRate(2);
+    //frameRate(2);
 
     background("#585161");
 
