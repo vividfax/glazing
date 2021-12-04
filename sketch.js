@@ -9,6 +9,9 @@ let hiddenCanvas;
 
 let fired = false;
 
+let maxBlurs = 2;
+let blurLevels = [2, 3, 4];
+
 function preload() {
 
     masks.push(loadImage("./svg/cup.svg"));
@@ -38,6 +41,8 @@ function setup() {
     glazeColor = color(random(255), 15, 100);
 
     maskIndex = int(random(masks.length));
+
+    blurLevels = shuffle(blurLevels);
 }
 
 function draw() {
@@ -77,6 +82,11 @@ function mousePressed() {
 
 function doFire() {
 
+    maxBlurs = 2;
+    blurLevels = shuffle(blurLevels);
+
+    layers = shuffle(layers);
+
     if (frameCount < 5) {
         return;
     }
@@ -103,11 +113,12 @@ function doFire() {
         hiddenCanvas.image(layers[i], 700/2, 700/2);
         hiddenCanvas.tint(random(255), 30, 100);
 
-        if (random() < 0.5) {
-            hiddenCanvas.filter(BLUR, int(random(5)));
+        if (maxBlurs > 0 && random() < 0.5) {
+            hiddenCanvas.filter(BLUR, int(blurLevels[maxBlurs]));
+            maxBlurs--;
         }
     }
-    //hiddenCanvas.filter(BLUR, 2);
+    hiddenCanvas.filter(BLUR, int(blurLevels[maxBlurs]));
 
     noLoop();
 
