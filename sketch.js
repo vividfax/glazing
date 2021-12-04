@@ -61,7 +61,7 @@ function draw() {
         pg.colorMode(HSB);
         pg.noStroke();
         pg.fill(glazeColor);
-        pg.ellipse(mouseX - (width-700)/2, mouseY - (height-700)/2, random(30, 180));
+        pg.ellipse(mouseX - (width-700)/2, mouseY - (height-700)/2, random(30, 120));
 
         image(pg, width/2, height/2);
     }
