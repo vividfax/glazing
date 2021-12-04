@@ -5,6 +5,8 @@ let layers = [];
 
 let glazeColor = "#fff";
 
+let dripSize = 160;
+
 let hiddenCanvas;
 
 let fired = false;
@@ -41,6 +43,8 @@ function setup() {
 
 function draw() {
 
+    dripSize -= 18;
+
     if (frameCount == 1) {
         background("#F3EFDF");
     }
@@ -52,6 +56,7 @@ function draw() {
     if (frameCount % 10 == 1) {
         layers.push(createGraphics(700, 700));
         glazeColor = color(random(255), 15, 100);
+        dripSize = 160;
     }
 
     if (layers.length > 0) {
@@ -59,7 +64,7 @@ function draw() {
         pg.colorMode(HSB);
         pg.noStroke();
         pg.fill(glazeColor);
-        pg.ellipse(mouseX - (width-700)/2, mouseY - (height-700)/2, random(30, 160));
+        pg.ellipse(mouseX - (width-700)/2, mouseY - (height-700)/2, dripSize);
 
         image(pg, width/2, height/2);
     }
