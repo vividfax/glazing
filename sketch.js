@@ -5,8 +5,6 @@ let layers = [];
 
 let glazeColor = "#fff";
 
-let dripSize = 160;
-
 let hiddenCanvas;
 
 let fired = false;
@@ -36,14 +34,13 @@ function setup() {
     hiddenCanvas.imageMode(CENTER);
     hiddenCanvas.colorMode(HSB);
 
+    layers.push(createGraphics(700, 700));
     glazeColor = color(random(255), 15, 100);
 
     maskIndex = int(random(masks.length));
 }
 
 function draw() {
-
-    dripSize -= 18;
 
     if (frameCount == 1) {
         background("#F3EFDF");
@@ -53,18 +50,18 @@ function draw() {
         return;
     }
 
-    if (frameCount % 10 == 1) {
-        layers.push(createGraphics(700, 700));
-        glazeColor = color(random(255), 15, 100);
-        dripSize = 160;
-    }
+    // if (frameCount % 10 == 1) {
+    //     layers.push(createGraphics(700, 700));
+    //     glazeColor = color(random(255), 15, 100);
+    //     dripSize = 160;
+    // }
 
     if (layers.length > 0) {
         let pg = layers[layers.length-1];
         pg.colorMode(HSB);
         pg.noStroke();
         pg.fill(glazeColor);
-        pg.ellipse(mouseX - (width-700)/2, mouseY - (height-700)/2, dripSize);
+        pg.ellipse(mouseX - (width-700)/2, mouseY - (height-700)/2, random(30, 180));
 
         image(pg, width/2, height/2);
     }
@@ -72,9 +69,15 @@ function draw() {
     displayMask();
 }
 
+function mousePressed() {
+
+    layers.push(createGraphics(700, 700));
+    glazeColor = color(random(255), 15, 100);
+}
+
 function doFire() {
 
-    if (fired || frameCount < 5) {
+    if (frameCount < 5) {
         return;
     }
 
