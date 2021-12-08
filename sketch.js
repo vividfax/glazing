@@ -12,7 +12,7 @@ let fired = false;
 let maxBlurs = 2;
 let blurLevels = [2, 3, 4];
 
-let drips;
+// let drips;
 let drops;
 let fireAudio;
 let resetAudio;
@@ -28,8 +28,8 @@ function preload() {
     masks.push(loadImage("./svg/puffer.svg"));
     masks.push(loadImage("./svg/vase.svg"));
 
-    drips = new Audio("./drips2.ogg");
-    drips.loop = true;
+    // drips = new Audio("./drips2.ogg");
+    // drips.loop = true;
     drops = new Audio("./drops.ogg");
     drops.loop = true;
 
@@ -67,7 +67,7 @@ function setup() {
 
     blurLevels = shuffle(blurLevels);
 
-    drips.play();
+    // drips.play();
     drops.play();
 }
 
@@ -112,7 +112,7 @@ function mousePressed() {
 
 function triggerFireSound() {
 
-    drips.pause();
+    // drips.pause();
     fireAudio.pause();
     fireAudio.currentTime = 0;
     fireAudio.play();
@@ -182,7 +182,7 @@ function displayMask() {
 
 function reset() {
 
-    drips.play();
+    // drips.play();
     resetAudio.play();
 
     fired = false;
