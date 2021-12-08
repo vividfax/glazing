@@ -47,8 +47,9 @@ function setup() {
 
     background("#585161");
 
-    select("#fire-button").mousePressed(() => doFire());
-    select("#reset-button").mousePressed(() => reset());
+    select("#fire-button").mousePressed(() => triggerFireSound());
+    select("#fire-button").mouseReleased(() => doFire());
+    select("#reset-button").mouseReleased(() => reset());
 
     select("#fire-button").mouseOver(() => mouseOverButton = true);
     select("#reset-button").mouseOver(() => mouseOverButton = true);
@@ -109,10 +110,15 @@ function mousePressed() {
     }
 }
 
-function doFire() {
+function triggerFireSound() {
 
     drips.pause();
+    fireAudio.pause();
+    fireAudio.currentTime = 0;
     fireAudio.play();
+}
+
+function doFire() {
 
     maxBlurs = 2;
     blurLevels = shuffle(blurLevels);
