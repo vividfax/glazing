@@ -106,6 +106,8 @@ function mousePressed() {
     glazeColor = color(random(255), 15, 100);
 
     if (!mouseOverButton && !fired) {
+        switchAudio.pause();
+        switchAudio.currentTime = 0;
         switchAudio.play();
     }
 }
