@@ -45,7 +45,7 @@ function setup() {
     colorMode(HSB);
     textAlign(CENTER);
     textFont("Caveat Brush");
-    textSize(20);
+    textSize(24);
     //frameRate(2);
 
     background("#585161");
