@@ -43,6 +43,9 @@ function setup() {
     createCanvas(700, 700);
     imageMode(CENTER);
     colorMode(HSB);
+    textAlign(CENTER);
+    textFont("Caveat Brush");
+    textSize(20);
     //frameRate(2);
 
     background("#585161");
@@ -75,6 +78,8 @@ function draw() {
 
     if (frameCount == 1) {
         background("#F3EFDF");
+        fill("#B3A8C0");
+        text("Click anywhere\nto change colour", width/2, height/2);
     }
 
     if (fired) {

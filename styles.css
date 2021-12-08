@@ -1,5 +1,9 @@
+body {
+    font-family: "Caveat Brush", sans-serif;
+}
+
 button {
-    font-family: "Caveat Brush", serif;
+    font-family: "Caveat Brush", sans-serif;
     width: 200px;
     height: 40px;
     position: absolute;
