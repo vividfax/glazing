@@ -185,6 +185,8 @@ function displayMask() {
 function reset() {
 
     // drips.play();
+    resetAudio.pause();
+    resetAudio.currentTime = 0;
     resetAudio.play();
 
     fired = false;
