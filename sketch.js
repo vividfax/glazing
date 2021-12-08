@@ -12,6 +12,14 @@ let fired = false;
 let maxBlurs = 2;
 let blurLevels = [2, 3, 4];
 
+let drips;
+let drops;
+let fireAudio;
+let resetAudio;
+let switchAudio;
+
+let mouseOverButton = false;
+
 function preload() {
 
     masks.push(loadImage("./svg/cup.svg"));
@@ -19,6 +27,15 @@ function preload() {
     masks.push(loadImage("./svg/pot.svg"));
     masks.push(loadImage("./svg/puffer.svg"));
     masks.push(loadImage("./svg/vase.svg"));
+
+    drips = new Audio("./drips2.ogg");
+    drips.loop = true;
+    drops = new Audio("./drops.ogg");
+    drops.loop = true;
+
+    fireAudio = new Audio("./fire.wav");
+    resetAudio = new Audio("./reset2.wav");
+    switchAudio = new Audio("./switch.wav");
 }
 
 function setup() {
@@ -33,6 +50,11 @@ function setup() {
     select("#fire-button").mousePressed(() => doFire());
     select("#reset-button").mousePressed(() => reset());
 
+    select("#fire-button").mouseOver(() => mouseOverButton = true);
+    select("#reset-button").mouseOver(() => mouseOverButton = true);
+    select("#fire-button").mouseOut(() => mouseOverButton = false);
+    select("#reset-button").mouseOut(() => mouseOverButton = false);
+
     hiddenCanvas = createGraphics(700, 700);
     hiddenCanvas.imageMode(CENTER);
     hiddenCanvas.colorMode(HSB);
@@ -43,6 +65,9 @@ function setup() {
     maskIndex = int(random(masks.length));
 
     blurLevels = shuffle(blurLevels);
+
+    drips.play();
+    drops.play();
 }
 
 function draw() {
@@ -78,9 +103,16 @@ function mousePressed() {
 
     layers.push(createGraphics(700, 700));
     glazeColor = color(random(255), 15, 100);
+
+    if (!mouseOverButton && !fired) {
+        switchAudio.play();
+    }
 }
 
 function doFire() {
+
+    drips.pause();
+    fireAudio.play();
 
     maxBlurs = 2;
     blurLevels = shuffle(blurLevels);
@@ -143,6 +175,9 @@ function displayMask() {
 }
 
 function reset() {
+
+    drips.play();
+    resetAudio.play();
 
     fired = false;
     layers = [];
