@@ -30,7 +30,7 @@ function preload() {
 
     // drips = new Audio("./drips2.ogg");
     // drips.loop = true;
-    drops = new Audio("./drops.ogg");
+    drops = new Audio("./drops.wav");
     drops.loop = true;
 
     fireAudio = new Audio("./fire.wav");
