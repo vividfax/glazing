@@ -117,6 +117,18 @@ function mousePressed() {
     }
 }
 
+function touchStarted() {
+
+    layers.push(createGraphics(700, 700));
+    glazeColor = color(random(255), 15, 100);
+
+    if (!mouseOverButton && !fired) {
+        switchAudio.pause();
+        switchAudio.currentTime = 0;
+        switchAudio.play();
+    }
+}
+
 function triggerFireSound() {
 
     // drips.pause();
